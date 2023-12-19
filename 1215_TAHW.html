@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
+</head>
+<body>
+  <h1>Simple Calculator</h1>
+  <p>Enter two numbers and choose an operation to perform calculations.</p>
+
+  <script>
+    function add(a, b) {
+      return a + b;
+    }
+
+    function subtract(a, b) {
+      return a - b;
+    }
+
+    function multiply(a, b) {
+      return a * b;
+    }
+
+    function divide(a, b) {
+      if (b === 0) {
+        return 'Division by zero is not allowed.';
+      }
+      return a / b;
+    }
+
+    function calculator() {
+      let num1, num2, operation;
+
+      while (true) {
+        num1 = parseFloat(prompt('Enter the first number:'));
+
+        if (isNaN(num1)) {
+          alert('Please enter a valid number.');
+          continue;
+        }
+
+        while (true) {
+          num2 = parseFloat(prompt('Enter the second number:'));
+
+          if (isNaN(num2)) {
+            alert('Please enter a valid number.');
+            continue;
+          }
+
+          break;
+        }
+
+        while (true) {
+          operation = prompt('Choose an operation: (+ , - , * , / )');
+
+          if (!['+', '-', '*', '/'].includes(operation)) {
+            alert('Please enter a valid operation');
+            continue;
+          }
+
+          break;
+        }
+
+        let result;
+
+        if (operation === '+') {
+          result = add(num1, num2);
+        } else if (operation === '-') {
+          result = subtract(num1, num2);
+        } else if (operation === '*') {
+          result = multiply(num1, num2);
+        } else if (operation === '/') {
+          result = divide(num1, num2);
+        }
+
+        if (typeof result === 'number') {
+          alert(`Result: ${result}`);
+        } else {
+          alert(result);
+        }
+
+        let continueInput = prompt('Do you want to perform another calculation? (yes/no)').toLowerCase();
+        if (continueInput !== 'yes') {
+          break;
+        }
+      }
+    }
+
+    calculator();
+  </script>
+</body>
+</html>
